@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoints xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns="http://www.xebialabs.com/deployit/endpoints"
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/endpoints endpoints.xsd">
+
+    <!--REST endpoints can be specified here. Each endpoint must be backed by a Jython script, where the standard XL Deploy services
+	 are automatically injected in Jython context by XL Deploy-->
+
+    <!-- Check src/main/python/cis.py to see what this endpoint does -->
+    <endpoint path="/test/py" method="GET" script="python/print.py" />
+    <endpoint path="/test/ssh" method="GET" script="python/ssh.py" />
+    <endpoint path="/test/clients" method="GET" script="python/clients.py" />
+    <endpoint path="/test/repos" method="GET" script="python/repos.py" />
+
+</endpoints>
+
