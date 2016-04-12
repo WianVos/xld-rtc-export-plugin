@@ -4,7 +4,7 @@ angular.module('myRepo', []).config(function ($httpProvider){
     var flexApp = parent.document.getElementById("flexApplication");
     if (flexApp) $httpProvider.defaults.headers.common.Authorization = flexApp.getBasicAuth();
 
-}).controller('RepoController', function ($http, $scope, ngDialog) {
+}).controller('RepoController', function ($http, $scope) {
     $scope.dataLoading = true;
 
     
@@ -48,7 +48,6 @@ angular.module('myRepo', []).config(function ($httpProvider){
             });
 
 	};
-
 
 
     $scope.loadRepos();
