@@ -15,8 +15,3 @@ class RepositoryHelper:
         type_ci = Type.valueOf(type)
         ci_ids = self._repositoryService.query(type_ci, None, parent, None, None, None, 0, -1)
         return map(lambda ci_id: self._repositoryService.read(ci_id.id), ci_ids)
-
-    def get_deployables_ci_ids(self, id):
-        ci = self._repositoryService.read(id)
-
-        return ci['deployables']

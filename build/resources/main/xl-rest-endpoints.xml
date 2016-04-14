@@ -11,7 +11,6 @@
     <endpoint path="/test/ssh" method="GET" script="python/ssh.py" />
     <endpoint path="/test/clients" method="GET" script="python/clients.py" />
     <endpoint path="/test/repos" method="GET" script="python/repos.py" />
-    <endpoint path="/test/singleci" method="GET" script="python/single.py" />
 
 </endpoints>
 

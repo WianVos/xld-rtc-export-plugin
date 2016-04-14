@@ -34,16 +34,16 @@ class XmlFilter:
 #        return updatedXml
 #    
     # Change xml to ElementTree for easier filtering and return updated XML
-    def get_xml_list(self, readmf, cis):
+    def get_xml_list(self, readmf):
         print "in filter"  
-
+        filterarray = ["was.ear", "was.jar", "jee.DataSourceSpec"]
         root = ET.fromstring(readmf)
         xml_list = ET.fromstring("<list></list>")
         
         for child in root:
          if child.tag == "deployables":
                 for gchild in child:
-                    if gchild.tag in filterarray:
+                    if gchild.tag not in filterarray:
                        xml_list.append(gchild)
         
         updatedXml = ET.tostring(xml_list,encoding="us-ascii")

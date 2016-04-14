@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+
+    THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+    FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+
+-->
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd" xmlns="http://www.xebialabs.com/deployit/synthetic" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <type type=".Importer" extends="udm.Configuration" description="Defines a repository from where a dar can be imported">
+        <property name="kind" required="true" />
+        <property name="serverUrl" required="true" />
+        <property name="username" required="false"/>
+        <property name="password" required="false" password="true"/>
+   </type>
+   <type type="lm.RTCClientServer" extends="udm.Configuration">
+        <property name="serverName" label="Name" kind="string" description="Unique name describing this RTC Client Server" />
+        <property name="host" label="host" kind="string" />
+        <property name="username" label="Username" kind="string" />
+        <property name="password" label="Password" kind="string" password="true" />
+        <property name="filesystemLocation" label="Filesystem Workspace Base" kind="string" />
+        <property name="pathToClientSoftware" label="Path to the RTC Client software" kind="string" required="true"  />
+    </type>
+    <type type="lm.RTCConfigRepo" extends="udm.Configuration">
+        <property name="serverName" label="Name" kind="string" description="Unique name describing this RTC Client Server" />
+        <property name="host" label="host" kind="string" />
+        <property name="username" label="Username" kind="string" />
+        <property name="password" label="Password" kind="string" password="true" />
+        <property name="RTC_REPO" label="RTC repository url"  kind="string" hidden="false" />
+        <property name="WORKSPACE" label="RTC workspace name"  kind="string" hidden="false" />
+        <property name="STREAM" label="RTC stream name"  kind="string" hidden="false" />
+        <property name="COMPONENT" label="RTC component name"  kind="string" hidden="false" />
+        <property name="WORKITEM"  label="RTC workitem nr"  kind="string" hidden="false" />
+    </type>
+
+</synthetic>

@@ -1,0 +1,28 @@
+ <div type="text/ng-template" id="openDialog" controller="RepoController">
+
+     <div class="content">
+        <p>Select cis to export</p>
+
+        <h4 ng-if="resultCi.deployables && !resultCi.deployables.length"><i>Requested target does not contain ci's</i></h4>
+
+        <h4 ng-if="dataLoading">
+        Loading configuration items. This may take a moment.
+        </h4>
+
+        <label class="span3" ng-repeat="ci in singleCi.deployables">
+            <input
+                type="checkbox"
+                name="selectedCis[]"
+                value="{{ci.id}}"
+                ng-checked="selection.indexOf(ci.id) > -1"
+                ng-click="toggleSelection(ci.id)"
+            > {{ci.id}}
+        </label>
+
+
+
+        <div class="ngdialog-buttons">
+            <button type="button" class="ngdialog-button ngdialog-button-primary " ng-click="export(id, selection) && closeAll()">Done</button>
+        </div>
+     </div>
+ </div>

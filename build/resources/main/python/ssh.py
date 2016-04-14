@@ -9,10 +9,6 @@ from overtherepy import SshConnectionOptions, OverthereHost, OverthereHostSessio
 from xldrtc import help
 from rtc.RTCWorkspace import RTCWorkspace
 
-cis = request.query['cis'].split(',')
-logger.info(str(type(cis)))
-logger.info(str(cis))
-
 rtc_client = repositoryService.read(request.query["client"])
 rtc_repo   = repositoryService.read(request.query["repo"])
 
@@ -44,7 +40,7 @@ stepfour = session.execute(getxml, check_success=True)
 exporter = help.XmlFilter(session, loc)
 readmf = exporter.read_manifest(keyval)
 print "hmm" 
-xml_list = exporter.get_xml_list(readmf, cis)
+xml_list = exporter.get_xml_list(readmf)
 
 #Write the filtered config to a valid rtc repo 
 print xml_list

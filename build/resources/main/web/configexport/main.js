@@ -1,13 +1,13 @@
-angular.module('myRepo', ['ngDialog']).config(function ($httpProvider){
+angular.module('myRepo', []).config(function ($httpProvider){
     // The following code retrieves credentials from the main XL Deploy application
     // and tells AngularJS to append them to every request.
     var flexApp = parent.document.getElementById("flexApplication");
     if (flexApp) $httpProvider.defaults.headers.common.Authorization = flexApp.getBasicAuth();
 
-}).controller('RepoController', function ($http, $scope, $rootScope, ngDialog) {
+}).controller('RepoController', function ($http, $scope) {
     $scope.dataLoading = true;
 
-
+    
     $scope.loadCis = function() {
         $http.get('/api/extension/test/py', {timeout: 5000000}).then(
             function (response) {
@@ -21,31 +21,6 @@ angular.module('myRepo', ['ngDialog']).config(function ($httpProvider){
             });
 
 	};
-
-	$scope.loadSingleCi = function(id) {
-	    $http.get('/api/extension/test/singleci',{"params": {"ci": id}, timeout: 5000000}).success(
-	    function (response) {
-	        $scope.singleCi = response.entity;
-	    })
-	}
-
-        // selected fruits
-    $scope.selection = [];
-
-      // toggle selection for a given fruit by name
-    $scope.toggleSelection = function toggleSelection(id) {
-        var idx = $scope.selection.indexOf(id);
-
-        // is currently selected
-        if (idx > -1) {
-          $scope.selection.splice(idx, 1);
-        }
-
-        // is newly selected
-        else {
-          $scope.selection.push(id);
-        }
-      };
 
     $scope.loadClients = function() {
         $http.get('/api/extension/test/clients', {timeout: 5000000}).then(
@@ -74,31 +49,13 @@ angular.module('myRepo', ['ngDialog']).config(function ($httpProvider){
 
 	};
 
-	$scope.openDialog = function (id) {
-	            $scope.selection = [];
-                $rootScope.theme = 'ngdialog-theme-plain';
-                $scope.id = id;
-                $scope.loadSingleCi(id)
-
-                ngDialog.open({
-                    template: 'partials/modals/configDialog.html',
-                    className: 'ngdialog-theme-plain',
-                    scope: $scope,
-                    backdrop : 'static',
-                    showClose: false
-                });
-
-            };
-
-
 
     $scope.loadRepos();
     $scope.loadClients();
     $scope.loadCis();
 
-    $scope.ssh = function(id, selection) {
-
-	$http.get('/api/extension/test/ssh', {"params": {"ciid": id, "cis": selection.toString(), "repo": $scope.selectedRepository, "client": $scope.selectedClientServer },timeout: 5000000}).success(
+    $scope.ssh = function(id) {
+	$http.get('/api/extension/test/ssh', {"params": {"ciid": id, "repo": $scope.selectedRepository, "client": $scope.selectedClientServer },timeout: 5000000}).success(
             function (response) {
 
             // TODO: Have more robust error reporting.
@@ -116,11 +73,11 @@ angular.module('myRepo', ['ngDialog']).config(function ($httpProvider){
 
 	};
 
-    $scope.export = function(id, selection) {
+    $scope.export = function(id) {
       $http.get('/deployit/export/deploymentpackage/' + id, {timeout: 500000}).success(
 	function(response) {
 	  $scope.execution = "The export was partially successful.";
-          $scope.ssh(response, selection);
+          $scope.ssh(response);
 
 	}).error(
 
@@ -132,3 +89,4 @@ angular.module('myRepo', ['ngDialog']).config(function ($httpProvider){
     };
 
 });
+
